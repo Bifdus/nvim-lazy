@@ -25,11 +25,11 @@ vim.keymap.set("n", "k", "<c-w>j", { noremap = true })
 -----------------------------------------------------------------------------
 
 -- Disable default s functionality as it conflicts with mini surround
-vim.keymap.set({ "n", "x" }, "s", "<Nop>")
-vim.keymap.set({ "n", "x" }, "S", "<Nop>")
+-- vim.keymap.set({ "n", "x" }, "s", "<Nop>")
+-- vim.keymap.set({ "n", "x" }, "S", "<Nop>")
 -- Janky fix, couldn't get flash unbinds to work
-vim.keymap.set({ "n", "x", "o" }, ";", "<Nop>")
-vim.keymap.set({ "n", "x", "o" }, ",", "<Nop>")
+-- vim.keymap.set({ "n", "x", "o" }, ";", "<Nop>")
+-- vim.keymap.set({ "n", "x", "o" }, ",", "<Nop>")
 
 -- Reselect the text that has just been pasted, see also https://stackoverflow.com/a/4317090/6064933.
 vim.keymap.set("n", "<leader>v", "printf('`[%s`]', getregtype()[0])", {

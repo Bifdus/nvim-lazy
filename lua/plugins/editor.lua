@@ -199,4 +199,82 @@ return {
       require("minty").setup(opts)
     end,
   },
+
+  -----------------------------------------------------------------------------
+  -- Note taking and todo list
+  {
+    "nvim-orgmode/orgmode",
+    config = function()
+      -- Setup orgmode
+      require("orgmode").setup({
+        calendar = { round_min_with_hours = true, min_big_step = 15, min_small_step = 1 },
+        org_log_repeat = "time",
+        org_id_method = "ts",
+        org_agenda_span = "week",
+        org_agenda_files = "~/orgfiles/**/*",
+        org_archive_location = "~/orgfiles/archive.org::/From %s",
+        org_default_notes_file = "~/orgfiles/refile.org",
+        org_refile_target_files = "~/orgfiles/archive.org",
+        win_split_mode = function(name)
+          -- Make sure it's not a scratch buffer by passing false as 2nd argument
+          local bufnr = vim.api.nvim_create_buf(false, false)
+          --- Setting buffer name is required
+          vim.api.nvim_buf_set_name(bufnr, name)
+
+          local fill = 0.8
+          local width = math.floor((vim.o.columns * fill))
+          local height = math.floor((vim.o.lines * fill))
+          local row = math.floor((((vim.o.lines - height) / 2) - 1))
+          local col = math.floor(((vim.o.columns - width) / 2))
+
+          vim.api.nvim_open_win(bufnr, true, {
+            relative = "editor",
+            width = width,
+            height = height,
+            row = row,
+            col = col,
+            style = "minimal",
+            border = "rounded",
+          })
+        end,
+
+        mappings = {
+          global = {
+            org_agenda = "<leader>oa",
+            org_capture = "<leader>oc",
+          },
+        },
+      })
+    end,
+  },
+
+  {
+    "folke/flash.nvim",
+    -- stylua: ignore
+    keys = {
+      {
+        '?',
+        mode = { 'n', 'x', 'o' },
+        function()
+          require('flash').jump()
+        end,
+        desc = 'Flash',
+      },
+    },
+  },
+
+  -----------------------------------------------------------------------------
+  --- Better Visual for help files
+  {
+    "OXY2DEV/helpview.nvim",
+    -- lazy = false, -- Recommended
+    ft = "help",
+
+    -- In case you still want to lazy load
+    -- ft = "help",
+
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
 }
