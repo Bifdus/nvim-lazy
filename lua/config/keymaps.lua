@@ -107,18 +107,6 @@ vim.keymap.set("n", "<leader>ih", ":ISwapNode<CR>", { noremap = true, silent = t
 vim.keymap.set("n", "<leader>io", ":ISwap<CR>", { noremap = true, silent = true })
 
 -----------------------------------------------------------------------------
--- Spectre find and replace
-vim.keymap.set("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
-  desc = "Toggle Spectre",
-})
-vim.keymap.set("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
-  desc = "Search current word",
-})
-vim.keymap.set("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
-  desc = "Search on current file",
-})
-
------------------------------------------------------------------------------
 -- Chainsaw logging Plugin
 
 -- log the name & value of the variable under the cursor
@@ -225,15 +213,24 @@ end, { silent = true, desc = "Previous Todo" })
 -----------------------------------------------------------------------------
 --- Minty color picker
 vim.keymap.set("n", "<leader>pc", "<cmd>Huefy<cr>")
-
 vim.keymap.set("n", "<leader>ps", "<cmd>Shades<cr>")
 
---------------------------------------------------------------------------------
------- Spider
----vim.keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
----vim.keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
----vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
+-- Fix for multicursor clearing with ESC keymap
+vim.keymap.set("n", "<esc>", function()
+  local mc = require("multicursor-nvim")
+  if not mc.cursorsEnabled() then
+    mc.enableCursors()
+  elseif mc.hasCursors() then
+    mc.clearCursors()
+  else
+    vim.cmd("noh")
+    LazyVim.cmp.actions.snippet_stop()
+    return "<esc>"
+  end
+end)
 -- Autocommands go below ----
+--
+--
 --  See `:help lua-guide-autocommands`
 
 -- vim: ts=2 sts=2 sw=2 et

@@ -81,17 +81,6 @@ return {
         end
       end)
 
-      -- Handle esc functionality, added nohlsearch to avoid conflicts
-      vim.keymap.set("n", "<esc>", function()
-        if not mc.cursorsEnabled() then
-          mc.enableCursors()
-        elseif mc.hasCursors() then
-          mc.clearCursors()
-        else
-          vim.cmd("nohlsearch")
-        end
-      end)
-
       -- Align cursor columns.
       vim.keymap.set("n", "<leader>a", mc.alignCursors)
 
@@ -200,5 +189,14 @@ return {
       { "<Leader>gcp", "<cmd>GitConflictPrevConflict<CR>", desc = "move to prev conflict" },
       { "<Leader>gci", "<cmd>GitConflictChooseTheirs<CR>", desc = "choose incoming" },
     },
+  },
+
+  { "nvchad/volt", lazy = false },
+  {
+    "nvchad/minty",
+    opts = { filetypes = { "css", "html", "typescript", "javascript", "tsx", "ts", "jsx" } },
+    config = function(_, opts)
+      require("minty").setup(opts)
+    end,
   },
 }
