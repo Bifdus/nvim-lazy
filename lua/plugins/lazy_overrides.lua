@@ -12,4 +12,13 @@ return {
       { "go", "<cmd>Lspsaga outline<CR>", "Goto outline" },
     },
   },
+  {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        { "<leader>o", group = "Orgmode", icon = { icon = "", color = "orange" } },
+        { "<leader>cl", group = "Chainsaw", icon = { icon = "🪚", color = "cyan" } },
+      },
+    },
+  },
 }
