@@ -55,20 +55,14 @@ vim.keymap.set("n", "<leader>qq", vim.diagnostic.setloclist, { desc = "Open diag
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- Disable in lazygit and ignore key in which key
-vim.keymap.set("t", "<Esc><Esc>", function()
-  local buf_name = vim.api.nvim_buf_get_name(0)
-  if buf_name:match("lazygit") or buf_name:match("yazi") then
-    return "<Esc>"
-  else
-    return "<C-\\><C-n>"
-  end
-end, { expr = true, nowait = true, desc = "which_key_ignore" })
-
--- TODO: Configure Lazygit current file history (see lazyvim.lazygit)
-vim.keymap.set("n", "<leader>lf", function()
-  local git_path = vim.api.nvim_buf_get_name(0)
-  require("custom.functions.lazygit")({ args = { "-f", vim.trim(git_path) } })
-end, { desc = "Lazygit Current File History" })
+-- vim.keymap.set("t", "<Esc><Esc>", function()
+--   local buf_name = vim.api.nvim_buf_get_name(0)
+--   if buf_name:match("lazygit") or buf_name:match("yazi") then
+--     return "<Esc>"
+--   else
+--     return "<C-\\><C-n>"
+--   end
+-- end, { expr = true, nowait = true, desc = "which_key_ignore" })
 
 -- Shift tab to dedent
 vim.keymap.set("i", "<S-Tab>", "<C-d>", { noremap = true, silent = true })
@@ -89,15 +83,17 @@ vim.keymap.set("n", "<leader>|", "<C-W>s", { desc = "Split Window Right", remap 
 vim.keymap.set("n", "<leader>wc", "<cmd>windo diffthis<cr>", { desc = "[c]ompare [w]indows" })
 
 -- Run Lua code
-vim.keymap.set("n", "<leader>lr", "<cmd>.lua<CR>", { desc = "Run current line as Lua code" })
-vim.keymap.set("v", "<leader>lR", [[<Esc><cmd>'<,'>lua<CR>]], { desc = "Run selected lines as Lua code" })
+-- TODO: Find a suitable bind for this
+-- vim.keymap.set("n", "<leader>lr", "<cmd>.lua<CR>", { desc = "Run current line as Lua code" })
+-- vim.keymap.set("v", "<leader>lR", [[<Esc><cmd>'<,'>lua<CR>]], { desc = "Run selected lines as Lua code" })
 
 -----------------------------------------------------------------------------
 -- Iswap - swap parameters or textobjects
-vim.keymap.set("n", "<leader>is", ":ISwapWith<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>in", ":ISwapNodeWith<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>ih", ":ISwapNode<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>io", ":ISwap<CR>", { noremap = true, silent = true })
+-- TODO: Find solution, textobjects might be better
+-- vim.keymap.set("n", "<leader>is", ":ISwapWith<CR>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<leader>in", ":ISwapNodeWith<CR>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<leader>ih", ":ISwapNode<CR>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<leader>io", ":ISwap<CR>", { noremap = true, silent = true })
 
 -----------------------------------------------------------------------------
 -- Chainsaw logging Plugin
