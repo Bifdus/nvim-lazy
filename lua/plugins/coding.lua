@@ -45,16 +45,16 @@ return {
   {
     "utilyre/barbecue.nvim",
     dependencies = { "SmiteshP/nvim-navic", "nvim-tree/nvim-web-devicons" },
-    keys = {
-      {
-        "<Leader>tB",
-        function()
-          local off = vim.b["barbecue_entries"] == nil
-          require("barbecue.ui").toggle(off and true or nil)
-        end,
-        desc = "Breadcrumbs toggle",
-      },
-    },
+    -- keys = {
+    --   {
+    --     "<Leader>ub",
+    --     function()
+    --       local off = vim.b["barbecue_entries"] == nil
+    --       require("barbecue.ui").toggle(off and true or nil)
+    --     end,
+    --     desc = "Breadcrumbs toggle",
+    --   },
+    -- },
     opts = {
       enable = true,
       attach_navic = true,
