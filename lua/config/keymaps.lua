@@ -24,13 +24,6 @@ vim.keymap.set("n", "k", "<c-w>j", { noremap = true })
 
 -----------------------------------------------------------------------------
 
--- Disable default s functionality as it conflicts with mini surround
--- vim.keymap.set({ "n", "x" }, "s", "<Nop>")
--- vim.keymap.set({ "n", "x" }, "S", "<Nop>")
--- Janky fix, couldn't get flash unbinds to work
--- vim.keymap.set({ "n", "x", "o" }, ";", "<Nop>")
--- vim.keymap.set({ "n", "x", "o" }, ",", "<Nop>")
-
 -- Reselect the text that has just been pasted, see also https://stackoverflow.com/a/4317090/6064933.
 vim.keymap.set("n", "<leader>v", "printf('`[%s`]', getregtype()[0])", {
   expr = true,
@@ -110,15 +103,8 @@ vim.keymap.set("n", "<leader>io", ":ISwap<CR>", { noremap = true, silent = true 
 -- Chainsaw logging Plugin
 
 -- log the name & value of the variable under the cursor
-vim.keymap.set(
-  "n",
-  "<leader>clv",
-  '<cmd>lua require("chainsaw").variableLog() <CR>',
-  { noremap = true, silent = true, desc = "[c]hainsaw [l]og [v]ariable" }
-)
-
--- like variableLog, but with syntax specific to inspect an object such as
--- `console.log(JSON.stringify(foobar))` in javascript
+-- stylua: ignore
+vim.keymap.set("n", "<leader>clv", '<cmd>lua require("chainsaw").variableLog() <CR>',{ noremap = true, silent = true, desc = "[c]hainsaw [l]og [v]ariable" })
 vim.keymap.set(
   "n",
   "<leader>clo",
@@ -228,6 +214,11 @@ vim.keymap.set("n", "<esc>", function()
     return "<esc>"
   end
 end)
+
+
+-- stylua: ignore
+vim.keymap.set("n", "<c-\\>", function() Snacks.terminal() end, { desc = "Terminal (cwd)" })
+
 -- Autocommands go below ----
 --
 --

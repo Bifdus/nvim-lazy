@@ -3,9 +3,10 @@ return {
   opts = {
     indent = {
       enabled = true,
-      only_scope = false,
+      scope = {
+        hl = "DraculaComment",
+      },
     },
-    scope = { enabled = false },
   },
   --stylua: ignore
   keys = {
