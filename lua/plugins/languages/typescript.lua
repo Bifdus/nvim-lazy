@@ -4,7 +4,8 @@ return {
   {
     "pmizio/typescript-tools.nvim",
     ft = { "html", "css", "javascript", "typescript", "typescriptreact", "javascriptreact" },
-    dependencies = { "nvim-lua/plenary.nvim" },
+    event = "LspAttach",
+    dependencies = { "saghen/blink.cmp", lazy = false, priority = 1000 },
     opts = {
       on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
