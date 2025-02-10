@@ -7,6 +7,9 @@ return {
         hl = "DraculaComment",
       },
     },
+    explorer = {
+      enabled = false,
+    },
     dashboard = {
       enabled = true,
       sections = {
