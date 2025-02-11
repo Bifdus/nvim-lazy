@@ -45,6 +45,7 @@ return {
   --stylua: ignore
   keys = {
     { "<leader>sf", function() Snacks.picker.files() end, desc = "Find Files" },
+    { "<leader>E", false}
   }
 ,
 }

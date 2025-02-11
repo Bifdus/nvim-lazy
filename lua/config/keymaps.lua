@@ -27,7 +27,7 @@ vim.keymap.set("n", "k", "<c-w>j", { noremap = true })
 -- Reselect the text that has just been pasted, see also https://stackoverflow.com/a/4317090/6064933.
 vim.keymap.set("n", "<leader>v", "printf('`[%s`]', getregtype()[0])", {
   expr = true,
-  desc = "reselect last pasted area",
+  desc = "Reselect last pasted area",
 })
 
 -- Always use very magic mode for searching
