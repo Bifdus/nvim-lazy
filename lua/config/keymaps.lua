@@ -53,17 +53,6 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagn
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>qq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- Disable in lazygit and ignore key in which key
--- vim.keymap.set("t", "<Esc><Esc>", function()
---   local buf_name = vim.api.nvim_buf_get_name(0)
---   if buf_name:match("lazygit") or buf_name:match("yazi") then
---     return "<Esc>"
---   else
---     return "<C-\\><C-n>"
---   end
--- end, { expr = true, nowait = true, desc = "which_key_ignore" })
-
 -- Shift tab to dedent
 vim.keymap.set("i", "<S-Tab>", "<C-d>", { noremap = true, silent = true })
 
@@ -81,11 +70,6 @@ vim.keymap.set("n", "<leader>w|", "<C-W>s", { desc = "Split Window Right", remap
 vim.keymap.set("n", "<leader>-", "<C-W>v", { desc = "Split Window Below", remap = true })
 vim.keymap.set("n", "<leader>|", "<C-W>s", { desc = "Split Window Right", remap = true })
 vim.keymap.set("n", "<leader>wc", "<cmd>windo diffthis<cr>", { desc = "[c]ompare [w]indows" })
-
--- Run Lua code
--- TODO: Find a suitable bind for this
--- vim.keymap.set("n", "<leader>lr", "<cmd>.lua<CR>", { desc = "Run current line as Lua code" })
--- vim.keymap.set("v", "<leader>lR", [[<Esc><cmd>'<,'>lua<CR>]], { desc = "Run selected lines as Lua code" })
 
 -----------------------------------------------------------------------------
 -- Iswap - swap parameters or textobjects
@@ -127,61 +111,16 @@ vim.keymap.set(
 -- Minimal log statement, with an emoji for differentiation. Intended for
 -- control flow inspection, i.e. to quickly glance whether a condition was
 -- triggered or not. (Inspired by AppleScript's `beep` command.)
-vim.keymap.set(
-  "n",
-  "<leader>clb",
-  '<cmd>lua require("chainsaw").beepLog()<CR>',
-  { noremap = true, silent = true, desc = "[c]hainsaw [l]og [b]eep" }
-)
-
--- create log statement, and position the cursor to enter a message
-vim.keymap.set(
-  "n",
-  "<leader>clm",
-  '<cmd>lua require("chainsaw").messageLog()<CR>',
-  { noremap = true, silent = true, desc = "[c]hainsaw [l]og [m]essage" }
-)
-
--- 1st call: start measuring the time
--- 2nd call: logs the time duration since
-vim.keymap.set(
-  "n",
-  "<leader>clT",
-  '<cmd>lua require("chainsaw").timeLog()<CR>',
-  { noremap = true, silent = true, desc = "[c]hainsaw [l]og [T]ime" }
-)
-
--- debug statements like `debugger` in javascript or `breakpoint()` in python
-vim.keymap.set(
-  "n",
-  "<leader>cld",
-  '<cmd>lua require("chainsaw").debugLog()<CR>',
-  { noremap = true, silent = true, desc = "[c]hainsaw [l]og [d]ebug" }
-)
-
--- prints the stacktrace of the current call
-vim.keymap.set(
-  "n",
-  "<leader>cls",
-  '<cmd>lua require("chainsaw").stacktraceLog()<CR>',
-  { noremap = true, silent = true, desc = "[c]hainsaw [l]og [s]tackTrace" }
-)
-
--- clearing statement, such as `console.clear()`
-vim.keymap.set(
-  "n",
-  "<leader>clc",
-  '<cmd>lua require("chainsaw").clearLog()<CR>',
-  { noremap = true, silent = true, desc = "[c]hainsaw [l]og [c]lear" }
-)
-
--- remove all log statements created by chainsaw
-vim.keymap.set(
-  "n",
-  "<leader>clr",
-  '<cmd>lua require("chainsaw").removeLogs()<CR>',
-  { noremap = true, silent = true, desc = "[c]hainsaw [l]og [r]emove" }
-)
+--
+-- stylua: ignore start
+vim.keymap.set("n", "<leader>clb", '<cmd>lua require("chainsaw").beepLog()<CR>',{ noremap = true, silent = true, desc = "[c]hainsaw [l]og [b]eep" })
+vim.keymap.set("n", "<leader>clm", '<cmd>lua require("chainsaw").messageLog()<CR>', { noremap = true, silent = true, desc = "[c]hainsaw [l]og [m]essage" })
+vim.keymap.set("n", "<leader>clT", '<cmd>lua require("chainsaw").timeLog()<CR>', { noremap = true, silent = true, desc = "[c]hainsaw [l]og [T]ime" })
+vim.keymap.set("n", "<leader>cld", '<cmd>lua require("chainsaw").debugLog()<CR>', { noremap = true, silent = true, desc = "[c]hainsaw [l]og [d]ebug" })
+vim.keymap.set("n", "<leader>cls", '<cmd>lua require("chainsaw").stacktraceLog()<CR>', { noremap = true, silent = true, desc = "[c]hainsaw [l]og [s]tackTrace" })
+vim.keymap.set("n", "<leader>clc", '<cmd>lua require("chainsaw").clearLog()<CR>', { noremap = true, silent = true, desc = "[c]hainsaw [l]og [c]lear" })
+vim.keymap.set("n", "<leader>clr", '<cmd>lua require("chainsaw").removeLogs()<CR>', { noremap = true, silent = true, desc = "[c]hainsaw [l]og [r]emove" })
+-- stylua: ignore end
 
 -----------------------------------------------------------------------------
 -- Cycle through todo comments
